@@ -2,9 +2,9 @@ import  './App.css';
 
 export default function Title({title}){
     return (
-        <div className='control'>
+        <div className='title-container'>
             <span className="title">{title}</span>
-            <div className='title-container'></div>
+            <div className='title-inline'></div>
         </div>
             
     )}

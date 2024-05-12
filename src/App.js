@@ -109,8 +109,8 @@ function App() {
   };
 
   const todoItemRender = (task, index) => (
-    <ListItem key={task.id} className="task-board">
-      <ListItemIcon>
+    <ListItem key={task.id} className="task-list-divider">
+      <ListItemIcon className="task-status-icon">
         {task.completed ? <Done color="success" /> : <Clear color="error" />}
       </ListItemIcon>
       <ListItemText primary={task.title} />
@@ -138,8 +138,8 @@ function App() {
   const doneTasks = tasks.filter((task) => task.completed).length;
 
   return (
-    <Container className="container">
-      <div className="user-componant">
+    <Container className="main-container">
+      <div>
         <Title title="User"></Title>
         <FormControl fullWidth>
           <Autocomplete
@@ -164,7 +164,7 @@ function App() {
         <Title title="Tasks"></Title>
         <List className="task-list-container">
           {loadingTasks ? (
-            <CircularProgress />
+            <CircularProgress size={20} />
           ) : sortedTasks.length > 0 ? (
             sortedTasks.map(todoItemRender)
           ) : (
@@ -173,9 +173,9 @@ function App() {
             </div>
           )}
         </List>
-        <div className="done-task-text">
-          <Typography>
-            Done {doneTasks}/{totalTasks} tasks
+        <div className="done-task-container">
+          <Typography className="done-task-text">
+            Done {doneTasks}/{totalTasks} {totalTasks === 1 ? 'task' : 'tasks'}
           </Typography>
         </div>
       </div>
