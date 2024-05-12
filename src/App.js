@@ -105,16 +105,17 @@ function App() {
       <ListItem key={task.id}>
         <ListItemText>  
           <Typography>
-            {task.completed ? <Done color='success'/> :<Clear color='error'/> } {task.title}
+            {task.completed ? <Done color='success' style={{ verticalAlign: 'middle' }} /> : <Clear color='error' style={{ verticalAlign: 'middle' }} />} {task.title}
           </Typography>
         </ListItemText>
         {!task.completed &&(
           <Button
+            className='mark-done-button'
             variant = 'contained'
             disabled = {loadingMarkDone[task.id] || loadingTasks} 
             onClick={() => markTaskAsDone(task.id)} 
           >
-            {loadingMarkDone[task.id] ? <CircularProgress size = {24}/> : 'Mark done'}
+            {loadingMarkDone[task.id] ? <CircularProgress size = {20}/> : 'Mark done'}
           </Button>
         )}
       </ListItem>
@@ -126,7 +127,7 @@ function App() {
   const doneTasks = tasks.filter(task => task.completed).length;
 
   return (
-    <Container>
+    <Container className='container'>
       <div>
         <Title title = "User"></Title>
         <FormControl fullWidth>
@@ -143,9 +144,8 @@ function App() {
           />
         </FormControl>
       </div>
-
       <div>
-        <Title title = "Task"></Title>
+        <Title title = "Tasks"></Title>
         <Divider className="MuiDivider-root" />
         <List className='task-list-container'>
               {
@@ -156,7 +156,6 @@ function App() {
         </List>
         <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>   
       </div>
-      
     </Container>
   );
 }
