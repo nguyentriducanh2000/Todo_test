@@ -82,13 +82,14 @@ function App() {
       if (!response.ok) {
         throw new Error('Failed to mark task as done');
       }
-      const updatedTasks = tasks.map(task => {
-        if (task.id === taskId) {
-          return { ...task, completed: true };
-        }
-        return task;
-      }).sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
-      setTasks(updatedTasks);
+      setTasks(prevTasks => {
+        return prevTasks.map(task => {
+          if (task.id === taskId) {
+            return { ...task, completed: true };
+          }
+          return task;
+        });
+      });
     } catch (error) {
       console.error('Error marking task as done:', error);
     } finally {
@@ -120,7 +121,7 @@ function App() {
       <Divider/>
     </>
   )
-
+  const sortedTasks = tasks.sort((a, b) => a.completed === b.completed ? a.id - b.id : (a.completed ? 1 : -1));
   const totalTasks = tasks.length;
   const doneTasks = tasks.filter(task => task.completed).length;
 
@@ -150,7 +151,7 @@ function App() {
               {
                 loadingTasks
                   ?<CircularProgress />
-                  :tasks.map(todoItemRender)
+                  :sortedTasks.map(todoItemRender)
               }
         </List>
         <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>   
