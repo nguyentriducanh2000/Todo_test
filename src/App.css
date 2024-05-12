@@ -32,3 +32,10 @@
   max-height: 500px; 
   overflow-y: auto; 
 }
+
+.mark-done-button {
+  white-space: nowrap;
+   /* font-size: 12px; */
+  /* width: 120px;  */
+  border-radius: 5px;
+}

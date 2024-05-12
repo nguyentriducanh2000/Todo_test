@@ -41,30 +41,29 @@ function App() {
     fetchUsers();
   }, []);
 
-  const fetchTasks = async (userId) => {
-    setLoadingTasks(true);
-    try {
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}/todos`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch tasks');
+  useEffect(() => {
+    const fetchTasks = async (userId) => {
+      setLoadingTasks(true);
+      try {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}/todos`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch tasks');
+        }
+        const tasksData = await response.json();
+        const sortedTasks = tasksData.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
+        setTasks(sortedTasks);
+      } catch (error) {
+        console.error('Error fetching tasks:', error);
+      } finally {
+        setLoadingTasks(false);
       }
-      const tasksData = await response.json();
-      const sortedTasks = tasksData.sort((a, b) => (a.completed === b.completed ? 0 : a.completed ? 1 : -1));
-      setTasks(sortedTasks);
-    } catch (error) {
-      console.error('Error fetching tasks:', error);
-    } finally {
-      setLoadingTasks(false);
-    }
-  };
+    };
+  
+    fetchTasks(selectedUser && selectedUser.id) 
+  }, [selectedUser]);
 
   const handleUserChange = async (event, newValue) => {
     setSelectedUser(newValue);
-    if (newValue) {
-      await fetchTasks(newValue.id);
-    } else {
-      setTasks([]);
-    }
   };
 
 
@@ -122,36 +121,40 @@ function App() {
           />
         </FormControl>
       </div>
-      
-      <Title title = "Task"></Title>
-      <Divider className="MuiDivider-root" />
-      <div className='task-list-container'>
-        {loadingTasks && <CircularProgress />}
-        {tasks.map(task => (
-          <React.Fragment key={task.id}>
-            <ListItem>
-              <ListItemText>
-                <Typography>
-                  {task.completed ? <Done color="success" /> : <Clear color="error" />} {task.title}
-                </Typography>
-              </ListItemText>
-              {!task.completed && (
-                <List>
-                  <Button
-                    variant="contained"
-                    disabled={loadingMarkDone[task.id] || loadingTasks}
-                    onClick={() => markTaskAsDone(task.id)}
-                  >
-                    {loadingMarkDone[task.id] ? <CircularProgress size={24} /> : 'Mark Done'}
-                  </Button>
-                </List>
-              )}
-            </ListItem>
-            <Divider />
-          </React.Fragment>
-        ))}
+
+      <div>
+        <Title title = "Task"></Title>
+        <Divider className="MuiDivider-root" />
+        <div className='task-list-container'>
+          {loadingTasks && <CircularProgress />}
+          {tasks.map(task => (
+            <React.Fragment key={task.id}>
+              <ListItem>
+                <ListItemText>
+                  <Typography>
+                    {task.completed ? <Done color="success" /> : <Clear color="error" />} {task.title}
+                  </Typography>
+                </ListItemText>
+                {!task.completed && (
+                  <List>
+                    <Button
+                      className="mark-done-button"
+                      variant="contained"
+                      disabled={loadingMarkDone[task.id] || loadingTasks}
+                      onClick={() => markTaskAsDone(task.id)}
+                    >
+                      {loadingMarkDone[task.id] ? <CircularProgress size={12} /> : 'Mark Done'}
+                    </Button>
+                  </List>
+                )}
+              </ListItem>
+              <Divider />
+            </React.Fragment>
+          ))}
+        </div>
+        <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>   
       </div>
-      <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>
+      
     </Container>
   );
 }
