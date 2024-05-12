@@ -84,9 +84,9 @@ function App() {
       if (!response.ok) {
         throw new Error('Failed to mark task as done')
       }
-      const updatedTask = await response.json
-
+      const updatedTask = await response.json()
       setTasks(prevTasks => prevTasks.map(task => (task.id === taskId) ? updatedTask: task))
+
     } catch (error) {
       console.error('Error marking task as done:', error)
     } finally {
@@ -95,11 +95,9 @@ function App() {
   }
 
   const todoItemRender = (task, index) => (
-    <>
       <ListItem
         key={task.id}
-        className = 'taskBoard'
-        sx={index === sortedTasks.length - 1 ? { borderBlockEnd: 'none' } : {}} 
+        className = 'task-board'
       >
         <ListItemIcon>
           {task.completed ? <Done color='success' /> : <Clear color='error' />}
@@ -119,9 +117,8 @@ function App() {
           )
         }
       </ListItem>
-    </>
   )
-  const sortedTasks = tasks.sort((a, b) => a.completed === b.completed ? a.id - b.id : (a.completed ? 1 : -1))
+  const sortedTasks = tasks.sort((a, b) => a.completed === b.completed ? 0 : (a.completed ? 1 : -1))
   const totalTasks = tasks.length
   const doneTasks = tasks.filter(task => task.completed).length
 
@@ -141,7 +138,7 @@ function App() {
                   label="Select user"
                   InputProps={{
                     ...params.InputProps,
-                    className: 'seachBox'
+                    className: 'search-box'
                   }}
                 />
               )}
