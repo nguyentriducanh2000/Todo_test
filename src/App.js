@@ -7,15 +7,12 @@ import {
   Autocomplete,
   FormControl,
   TextField,
-} from "@mui/material";
-import { Done, Clear } from "@mui/icons-material";
-import {
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
-  Divider,
 } from "@mui/material";
+import { Done, Clear } from "@mui/icons-material";
 
 import "./App.css";
 import Title from "./Title";
@@ -28,20 +25,22 @@ function App() {
   const [loadingMarkDone, setLoadingMarkDone] = useState(false);
 
   useEffect(() => {
-    async function fetchUsers() {
+    const fetchUsers = async () => {
       try {
         const response = await fetch(
           "https://jsonplaceholder.typicode.com/users"
         );
+
         if (!response.ok) {
           throw new Error("Failed to fetch users");
         }
+
         const usersData = await response.json();
         setUsers(usersData);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
-    }
+    };
 
     fetchUsers();
   }, []);
@@ -108,7 +107,7 @@ function App() {
     }
   };
 
-  const todoItemRender = (task, index) => (
+  const todoItemRender = (task) => (
     <ListItem key={task.id} className="task-list-divider">
       <ListItemIcon className="task-status-icon">
         {task.completed ? <Done color="success" /> : <Clear color="error" />}
@@ -118,7 +117,7 @@ function App() {
       {!task.completed && (
         <Button
           className="mark-done-button"
-          variant="contained"
+          variant="outlined"
           disabled={loadingMarkDone[task.id] || loadingTasks}
           onClick={() => markTaskAsDone(task.id)}
         >
@@ -175,7 +174,10 @@ function App() {
         </List>
         <div className="done-task-container">
           <Typography className="done-task-text">
-            Done {doneTasks}/{totalTasks} {totalTasks === 1 ? 'task' : 'tasks'}
+            {`Done ${doneTasks}/${totalTasks} task${
+              totalTasks == 1 ? "" : "s"
+            }.`}
+            {doneTasks > 0 && doneTasks === totalTasks ? " Good job" : ""}
           </Typography>
         </div>
       </div>

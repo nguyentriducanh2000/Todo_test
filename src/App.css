@@ -2,7 +2,6 @@
   min-width: 100%;
 }
 
-/* title */
 .title-container {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -15,7 +14,7 @@
   font-size: 20px;
   font-weight: 600;
   align-self: center;
-  min-width: 50px;
+  min-width: 60px;
   margin-left: 0px;
 }
 
@@ -40,13 +39,11 @@
 
 }
 
-/* user box */
 .search-box {
   max-width: 260px;
   max-height: 50px;
 }
 
-/* taskboard */
 .task-list-container {
   height: 500px;
   border: 0.5px solid black;
@@ -67,6 +64,8 @@
 .mark-done-button {
   min-width: 125px !important;
   margin-left: 10px !important;
+  min-height: 35px !important;
+  line-height: 0 !important;
 }
 
 .no-data-container {
@@ -90,16 +89,6 @@
   font-size: 16px !important;
   font-weight: 400 ;
   color: rgb(70, 67, 67);
-}
-
-/* UI fix */
-.MuiContainer-root {
-  margin: 0 !important;
-}
-
-/* //todo */
-.css-1oqqzyl-MuiContainer-root {
-  max-width: 95% !important;
 }
 
 .task-status-icon {
