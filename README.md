@@ -1,5 +1,5 @@
 # Todo-Test
-## Requirements analysis
+## Requirements analysis & giải quyết
 - Requirements: Thiết kế 1 giao diện bao gồm: 
 + Hiển thị và cho phép chọn user
 + Bảng cho thông tin các task tương ứng với user, thể hiện những task đã/chưa hoàn thành, cho phép ấn hoàn thành.
@@ -15,3 +15,15 @@
 + Material-UI: thư viện UI phổ biến, có sẵn các thiết kế UI để sử dụng và tuỳ chỉnh.
 + Fetch API: phổ biến, sử dụng đơn giản và hiệu quả.
 
+## Hướng dẫn cài đặt và sử dụng:
+- Yêu cầu: cài đặt **Nodejs** và **npm**.
+- Cài đặt:
++ tới thư mục chứa srccode và cài đặt các thư viện cần thiết, ở đây là MUI.
+```javascript
+    npm install @mui/material @mui/icons-material
+```
++ khởi chạy project
+```code
+    npm start
+```
++ Giao diện được hiển thị trên trình duyệt với đường dẫn http://localhost:3000 
