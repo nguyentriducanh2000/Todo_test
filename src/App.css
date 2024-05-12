@@ -16,14 +16,18 @@
   margin-right: 0px;
   content: '';
   display: inline-block;
-  width: 95%;
+  width: 90%;
   height: 1px; 
   background-color: black; 
   vertical-align: middle;
 }
 
-
-
+/* search box */
+.seachBox{
+  max-width: 260px;
+  max-height: 50px;
+  text-align: 'center';
+}
 
 /* taskboard */
 .task-list-container {
@@ -32,6 +36,10 @@
   border-radius: 5px;
   max-height: 500px; 
   overflow-y: auto; 
+}
+
+.taskBoard{
+  border-block-end: 0.5px solid black;
 }
 
 .mark-done-button {

@@ -100,15 +100,17 @@ function App() {
     }
   }
 
-  const todoItemRender = (task) => (
+  const todoItemRender = (task, index) => (
     <>
       <ListItem
         key={task.id}
+        className = 'taskBoard'
+        sx={index === sortedTasks.length - 1 ? { borderBlockEnd: 'none' } : {}} 
       >
         <ListItemIcon>
           {task.completed ? <Done color='success' /> : <Clear color='error' />}
         </ListItemIcon>
-        <ListItemText primary={task.title} />
+        <ListItemText primary={task.title}/>
         
         {
           !task.completed && (
@@ -123,7 +125,6 @@ function App() {
           )
         }
       </ListItem>
-      <Divider/>
     </>
   )
   const sortedTasks = tasks.sort((a, b) => a.completed === b.completed ? a.id - b.id : (a.completed ? 1 : -1))
@@ -141,9 +142,14 @@ function App() {
               value={selectedUser}
               onChange={handleUserChange}
               renderInput={(params) => (
-                  <TextField
+                <TextField
                   {...params}
-                  label="Select user" />
+                  label="Select user"
+                  InputProps={{
+                    ...params.InputProps,
+                    className: 'seachBox'
+                  }}
+                />
               )}
           />
         </FormControl>
