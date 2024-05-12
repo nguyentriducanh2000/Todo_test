@@ -66,7 +66,6 @@ function App() {
     setSelectedUser(newValue);
   };
 
-
   const markTaskAsDone = async (taskId) => {
     setLoadingMarkDone(prevState => ({
       ...prevState,
@@ -100,6 +99,28 @@ function App() {
     }
   };
 
+  const todoItemRender = (task) => (
+    <>
+      <ListItem key={task.id}>
+        <ListItemText>  
+          <Typography>
+            {task.completed ? <Done color='success'/> :<Clear color='error'/> } {task.title}
+          </Typography>
+        </ListItemText>
+        {!task.completed &&(
+          <Button
+            variant = 'contained'
+            disabled = {loadingMarkDone[task.id] || loadingTasks} 
+            onClick={() => markTaskAsDone(task.id)} 
+          >
+            {loadingMarkDone[task.id] ? <CircularProgress size = {24}/> : 'Mark done'}
+          </Button>
+        )}
+      </ListItem>
+      <Divider/>
+    </>
+  )
+
   const totalTasks = tasks.length;
   const doneTasks = tasks.filter(task => task.completed).length;
 
@@ -125,33 +146,13 @@ function App() {
       <div>
         <Title title = "Task"></Title>
         <Divider className="MuiDivider-root" />
-        <div className='task-list-container'>
-          {loadingTasks && <CircularProgress />}
-          {tasks.map(task => (
-            <React.Fragment key={task.id}>
-              <ListItem>
-                <ListItemText>
-                  <Typography>
-                    {task.completed ? <Done color="success" /> : <Clear color="error" />} {task.title}
-                  </Typography>
-                </ListItemText>
-                {!task.completed && (
-                  <List>
-                    <Button
-                      className="mark-done-button"
-                      variant="contained"
-                      disabled={loadingMarkDone[task.id] || loadingTasks}
-                      onClick={() => markTaskAsDone(task.id)}
-                    >
-                      {loadingMarkDone[task.id] ? <CircularProgress size={12} /> : 'Mark Done'}
-                    </Button>
-                  </List>
-                )}
-              </ListItem>
-              <Divider />
-            </React.Fragment>
-          ))}
-        </div>
+        <List className='task-list-container'>
+              {
+                loadingTasks
+                  ?<CircularProgress />
+                  :tasks.map(todoItemRender)
+              }
+        </List>
         <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>   
       </div>
       
