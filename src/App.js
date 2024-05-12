@@ -84,15 +84,9 @@ function App() {
       if (!response.ok) {
         throw new Error('Failed to mark task as done')
       }
+      const updatedTask = await response.json
 
-      setTasks(prevTasks => prevTasks.map(task => {
-          if (task.id === taskId) {
-            return { ...task, completed: true }
-          }
-
-          return task
-        })
-      )
+      setTasks(prevTasks => prevTasks.map(task => (task.id === taskId) ? updatedTask: task))
     } catch (error) {
       console.error('Error marking task as done:', error)
     } finally {
