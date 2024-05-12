@@ -1,29 +1,29 @@
 # Todo-Test
-## Requirements analysis & giải quyết
-- Requirements: Thiết kế 1 giao diện bao gồm: 
-+ Hiển thị và cho phép chọn user
-+ Bảng cho thông tin các task tương ứng với user, thể hiện những task đã/chưa hoàn thành, cho phép ấn hoàn thành.
-+ Hiện thị số lượng task đã hoàn thành/ tổng số task.
--> thiết kế frontend từ những yêu cầu trên, gọi API phù hợp để lấy dữ liệu từ backend( đã có sẵn).
-- Lựa chọn công nghệ / công cụ thực hiện:
+## Requirements & solution
+- **Requirements:** Design a web UI including:
++ Displays and allows selection of users.
++ The table displays job information corresponding to the selected user, indicating completed/incomplete jobs and allowing job completion.
++ Display the number of completed tasks/total tasks.
+-> Design frontend UI based on the above requirements, call APIs to fetch data from the backend (already available).
+- **Technology/tools selection:**
 + ReactJS: 
-    * Real-time interact:  thêm các tính năng như thêm, sửa, xóa công việc mà không cần phải tải lại trang.
-    * Re-use: sử dụng lại các componant nhiều lần và linh hoạt
-    * State Management: sử dụng state và props, cho phép quản lý và thay đổi trạng thái -> thay đổi giao diện thông qua trạng thái.
-    * Virtual DOM: tối ưu hoá DOM, cập nhật nhanh chóng mà không ảnh hưởng đến các DOM khác.
-    * Gần gũi, dễ sử dụng, nhiều thư viện...
-+ Material-UI: thư viện UI phổ biến, có sẵn các thiết kế UI để sử dụng và tuỳ chỉnh.
-+ Fetch API: phổ biến, sử dụng đơn giản và hiệu quả.
+    * Real-time interaction: Add features like adding, editing, deleting tasks without page reload.
+    * Re-use: reuse components many times and flexibly
+    * State Management: Use state and props to manage and change the state -> Change UI based on the state.
+    * Virtual DOM: Optimize DOM, update quickly without affecting other DOM elements.
+    * User-friendly, easy to use, with many libraries...
++ Material-UI: Popular UI library, provides pre-designed UI components for use and customization
++ Fetch API: Commonly used, simple and effective.
 
-## Hướng dẫn cài đặt và sử dụng:
-- Yêu cầu: cài đặt **Nodejs** và **npm**.
-- Cài đặt:
-+ tới thư mục chứa srccode và cài đặt các thư viện cần thiết.
+## Installation:
+- **Requirements**: Install Node.js and npm.
+- **Installation**:
++ Install the necessary libraries
 ```
     npm install
 ```
-+ khởi chạy project
++ Start the project.
 ```
     npm start
 ```
-+ Giao diện được hiển thị trên trình duyệt với đường dẫn http://localhost:3000 
++ The interface will be displayed on the browser with the URL http://localhost:3000.
