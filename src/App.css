@@ -27,3 +27,8 @@
   background-color: black; 
   vertical-align: middle;
 }
+
+.task-list-container {
+  max-height: 500px; 
+  overflow-y: auto; 
+}

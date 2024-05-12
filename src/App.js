@@ -122,10 +122,10 @@ function App() {
           />
         </FormControl>
       </div>
-
+      
+      <Title title = "Task"></Title>
       <Divider className="MuiDivider-root" />
-      <div>
-        <Title title = "Task"></Title>
+      <div className='task-list-container'>
         {loadingTasks && <CircularProgress />}
         {tasks.map(task => (
           <React.Fragment key={task.id}>
@@ -150,8 +150,8 @@ function App() {
             <Divider />
           </React.Fragment>
         ))}
-        <Typography>{doneTasks}/{totalTasks} tasks done</Typography>
       </div>
+      <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>
     </Container>
   );
 }
