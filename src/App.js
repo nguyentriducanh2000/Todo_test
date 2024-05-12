@@ -160,10 +160,17 @@ function App() {
               {
                 loadingTasks
                   ?<CircularProgress />
-                  :sortedTasks.map(todoItemRender)
+                  :sortedTasks.length > 0 ?(sortedTasks.map(todoItemRender)) 
+                  :(
+                    <div className="no-data-container">
+                      <Typography className='no-data-text'>No data</Typography>
+                    </div>
+                  )
               }
         </List>
-        <Typography>Done {doneTasks}/{totalTasks} tasks</Typography>   
+        <div className='done-task-text'>
+          <Typography >Done {doneTasks}/{totalTasks} tasks</Typography>   
+        </div>
       </div>
     </Container>
   )
