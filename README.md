@@ -18,12 +18,12 @@
 ## Hướng dẫn cài đặt và sử dụng:
 - Yêu cầu: cài đặt **Nodejs** và **npm**.
 - Cài đặt:
-+ tới thư mục chứa srccode và cài đặt các thư viện cần thiết, ở đây là MUI.
-```javascript
-    npm install @mui/material @mui/icons-material
++ tới thư mục chứa srccode và cài đặt các thư viện cần thiết.
+```
+    npm install
 ```
 + khởi chạy project
-```code
+```
     npm start
 ```
 + Giao diện được hiển thị trên trình duyệt với đường dẫn http://localhost:3000 
